@@ -2,12 +2,13 @@ package com.petersonaraujo.srv_user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
+@EnableFeignClients
 @SpringBootApplication
-public class SrvUserApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SrvUserApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
-
 }
