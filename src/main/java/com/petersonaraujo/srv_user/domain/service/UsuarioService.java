@@ -1,14 +1,11 @@
 package com.petersonaraujo.srv_user.domain.service;
 
-import com.petersonaraujo.srv_user.domain.entity.Usuario;
+import com.petersonaraujo.srv_user.domain.model.Usuario;
 import com.petersonaraujo.srv_user.ports.input.DeletarUsuarioUseCase;
 import com.petersonaraujo.srv_user.ports.input.EditarUsuarioUseCase;
 import com.petersonaraujo.srv_user.ports.input.ProcurarUsuarioUseCase;
 import com.petersonaraujo.srv_user.ports.input.SalvarUsuarioUseCase;
-import com.petersonaraujo.srv_user.ports.output.DeletarUsuarioPort;
-import com.petersonaraujo.srv_user.ports.output.EditarUsuarioPort;
-import com.petersonaraujo.srv_user.ports.output.ProcurarUsuarioPort;
-import com.petersonaraujo.srv_user.ports.output.SalvarUsuarioPort;
+import com.petersonaraujo.srv_user.ports.output.*;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -20,10 +17,16 @@ public class UsuarioService implements SalvarUsuarioUseCase, EditarUsuarioUseCas
     private final EditarUsuarioPort editarUsuarioPort;
     private final ProcurarUsuarioPort procurarUsuarioPort;
     private final DeletarUsuarioPort deletarUsuarioPort;
+    private final BuscarCepPort buscarCepPort;
 
     @Override
     public Usuario salvarUsuario(Usuario usuario) {
         procurarUsuarioPort.procurarUsuarioPorEmail(usuario.getEmail());
+
+        var cepEncontrado = buscarCepPort.buscarCep(usuario.getCep());
+        usuario.setBairro(cepEncontrado.getBairro());
+        usuario.setCidade(cepEncontrado.getLocalidade());
+        usuario.setEstado(cepEncontrado.getUf());
 
         return salvarUsuarioPort.salvarUsuario(usuario);
     }

@@ -19,4 +19,8 @@ public class UsuarioEntity {
     private String sobrenome;
     private String email;
     private String senha;
+    private String cep;
+    private String cidade;
+    private String bairro;
+    private String estado;
 }
