@@ -2,7 +2,7 @@ package com.petersonaraujo.srv_user.adapter.input.usuario.mapper;
 
 import com.petersonaraujo.srv_user.adapter.input.usuario.dto.UsuarioRequest;
 import com.petersonaraujo.srv_user.adapter.input.usuario.dto.UsuarioResponse;
-import com.petersonaraujo.srv_user.domain.entity.Usuario;
+import com.petersonaraujo.srv_user.domain.model.Usuario;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

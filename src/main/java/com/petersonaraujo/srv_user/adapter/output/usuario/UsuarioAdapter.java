@@ -1,10 +1,13 @@
-package com.petersonaraujo.srv_user.adapter.output.usuario.adapter;
+package com.petersonaraujo.srv_user.adapter.output.usuario;
 
 
+import com.petersonaraujo.srv_user.domain.exception.EmailJaCadastradoException;
+import com.petersonaraujo.srv_user.domain.exception.EmailJaCadastradoException;
 import com.petersonaraujo.srv_user.adapter.output.usuario.entity.UsuarioEntity;
 import com.petersonaraujo.srv_user.adapter.output.usuario.mapper.UsuarioAdapterMapper;
 import com.petersonaraujo.srv_user.adapter.output.usuario.repository.UsuarioRepository;
-import com.petersonaraujo.srv_user.domain.entity.Usuario;
+import com.petersonaraujo.srv_user.domain.exception.UsuarioNaoEncontradoException;
+import com.petersonaraujo.srv_user.domain.model.Usuario;
 import com.petersonaraujo.srv_user.ports.output.DeletarUsuarioPort;
 import com.petersonaraujo.srv_user.ports.output.EditarUsuarioPort;
 import com.petersonaraujo.srv_user.ports.output.ProcurarUsuarioPort;
@@ -49,7 +52,7 @@ public class UsuarioAdapter implements SalvarUsuarioPort, EditarUsuarioPort, Pro
     public void procurarUsuarioPorEmail(String email) {
         usuarioRepository.findByEmail(email)
                 .ifPresent(usuarioEntity -> {
-                    throw new RuntimeException("Usuário já cadastrado");
+                    throw new EmailJaCadastradoException();
                 });
     }
 
@@ -60,6 +63,6 @@ public class UsuarioAdapter implements SalvarUsuarioPort, EditarUsuarioPort, Pro
 
     private UsuarioEntity buscarEntidade(Long id) {
         return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(UsuarioNaoEncontradoException::new);
     }
 }

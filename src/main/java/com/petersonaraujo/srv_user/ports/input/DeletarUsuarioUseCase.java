@@ -1,6 +1,6 @@
 package com.petersonaraujo.srv_user.ports.input;
 
-import com.petersonaraujo.srv_user.domain.entity.Usuario;
+import com.petersonaraujo.srv_user.domain.model.Usuario;
 
 /**
  * Caso de uso excluir um usuário {@link Usuario}

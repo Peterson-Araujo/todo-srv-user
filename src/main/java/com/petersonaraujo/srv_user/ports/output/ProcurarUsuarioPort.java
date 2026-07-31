@@ -1,9 +1,8 @@
 package com.petersonaraujo.srv_user.ports.output;
 
-import com.petersonaraujo.srv_user.domain.entity.Usuario;
+import com.petersonaraujo.srv_user.domain.model.Usuario;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Caso de uso para procurar um usuário {@link Usuario}

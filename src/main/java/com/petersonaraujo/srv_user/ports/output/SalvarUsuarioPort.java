@@ -1,6 +1,6 @@
 package com.petersonaraujo.srv_user.ports.output;
 
-import com.petersonaraujo.srv_user.domain.entity.Usuario;
+import com.petersonaraujo.srv_user.domain.model.Usuario;
 
 /**
  * Caso de uso para salvar um usuário {@link Usuario}
